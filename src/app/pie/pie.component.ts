@@ -14,13 +14,13 @@ export class PieComponent implements OnInit {
     {"Framework": "Backbone", "Stars": "27647", "Released": "2010"},
     {"Framework": "Ember", "Stars": "21471", "Released": "2011"},
   ];
-  private svg;
+  private svg: any;
   private margin = 50;
   private width = 750;
   private height = 600;
   // The radius of the pie chart is half the smallest side
   private radius = Math.min(this.width, this.height) / 2 - this.margin;
-  private colors;
+  private colors: any;
 
   private createSvg(): void {
     this.svg = d3.select("figure#pie")
@@ -54,7 +54,7 @@ export class PieComponent implements OnInit {
       .innerRadius(0)
       .outerRadius(this.radius)
     )
-    .attr('fill', (d, i) => (this.colors(i)))
+    .attr('fill', (d: any, i: any) => (this.colors(i)))
     .attr("stroke", "#121926")
     .style("stroke-width", "1px");
 
@@ -68,8 +68,8 @@ export class PieComponent implements OnInit {
     .data(pie(this.data))
     .enter()
     .append('text')
-    .text(d => d.data.Framework)
-    .attr("transform", d => "translate(" + labelLocation.centroid(d) + ")")
+    .text((d: any) => d.data.Framework)
+    .attr("transform", (d: any) => "translate(" + labelLocation.centroid(d) + ")")
     .style("text-anchor", "middle")
     .style("font-size", 15);
   }
